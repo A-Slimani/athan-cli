@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser, Namespace
-from datetime import time, datetime
+from datetime import time, datetime, timedelta
 from requests_cache import CachedSession
 from prettytable import PrettyTable
 import requests
@@ -47,13 +47,27 @@ for i in range(len(prayer_times)):
 
 if next_prayer_obj == {}:
     next_prayer_obj = prayer_times[0]
+    prev_prayer_obj = prayer_times[-1]
 
 next_prayer_name = list(next_prayer_obj.keys())[0]
-next_prayer_time = list(next_prayer_obj.values())[0].strftime("%H:%M")
-
+next_prayer_time = list(next_prayer_obj.values())[0]
 prev_prayer_name = list(prev_prayer_obj.keys())[0]
 
-next_prayer_str = f"Currently {prev_prayer_name} time. The next prayer is {next_prayer_name} at {next_prayer_time}"
+td: timedelta
+nt = datetime.combine(datetime.min, next_prayer_time)
+ct = datetime.combine(datetime.min, current_time)
+if ct > nt:
+    td = datetime.combine(datetime(1, 1, 2), next_prayer_time) - datetime.combine(datetime.min, current_time)
+else:
+    td = datetime.combine(datetime.min, next_prayer_time) - datetime.combine(datetime.min, current_time)
+
+sr = int(td.total_seconds())
+hours = sr // 3600
+minutes = (sr % 3600) // 60
+
+next_prayer_str = f"Currently {prev_prayer_name} time."
+next_prayer_str += f" Next prayer is {next_prayer_name} at {next_prayer_time.strftime("%H:%M")}"
+next_prayer_str += f" in {hours} hours and {minutes} minutes"
 
 # get all athan times and other relevant info
 athan_table = PrettyTable()
