@@ -65,9 +65,13 @@ sr = int(td.total_seconds())
 hours = sr // 3600
 minutes = (sr % 3600) // 60
 
-next_prayer_str = f"Currently {prev_prayer_name} time."
-next_prayer_str += f" Next prayer is {next_prayer_name} at {next_prayer_time.strftime("%H:%M")}"
-next_prayer_str += f" in {hours} hours and {minutes} minutes"
+st = datetime.combine(datetime.min, list(all_prayer_times[1].values())[0])
+next_prayer_str = f"Currently {prev_prayer_name} time. " if ct < st else ""
+next_prayer_str += f"Next prayer is {next_prayer_name} at {next_prayer_time.strftime("%H:%M")} "
+if hours > 0:
+    next_prayer_str += f"in {hours} hours and {minutes} minutes."
+else:
+    next_prayer_str += f"in {minutes} minutes."
 
 # get all athan times and other relevant info
 athan_table = PrettyTable()
