@@ -4,10 +4,10 @@ from argparse import ArgumentParser, Namespace
 from datetime import time, datetime, timedelta
 from requests_cache import CachedSession
 from prettytable import PrettyTable
-import requests
 
 # geolocation handling
-response = requests.get('https://ipinfo.io')
+session = CachedSession(cache_name='/tmp/athan-loc', expire_after=86400)  # after one day
+response = session.get('https://ipinfo.io')
 data = response.json()
 loc = data['loc'].split(',')
 lat, long = loc[0], loc[1]
@@ -15,7 +15,7 @@ lat, long = loc[0], loc[1]
 # athan api handling section
 url = f'http://api.aladhan.com/v1/timings?latitude={lat}&longitude={long}&method=3'
 
-session = CachedSession(cache_name='cache/athan-data', expire_after=86400)  # after one day
+session = CachedSession(cache_name='/tmp/athan-times', expire_after=86400)  # after one day
 response = session.get(url)
 
 prayer_times, all_prayer_times = [], []
