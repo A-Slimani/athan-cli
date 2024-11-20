@@ -11,5 +11,5 @@ function athan {
 }
 ```
 ## Commands
-`athan` - tells the next prayer time
-`athan --all` - Shows all the prayer times for the day (including sunrise)
+- `athan` - tells the next prayer time
+- `athan --all` - Shows all the prayer times for the day (including sunrise)
