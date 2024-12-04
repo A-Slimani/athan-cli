@@ -1,7 +1,11 @@
-# ATHAN TERMINAL
+# ATHAN CLI 
 A simple terminal application that tells the athan time based of current geolocation
 
 ## Setup
+### Windows
+- 
+
+## Old Setup
 ### Windows
 - Install the python libraries with the command `pip -r requirements.txt`
 - Open up terminal profile with `notepad $PROFILE` then add the following
