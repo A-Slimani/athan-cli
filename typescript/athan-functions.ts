@@ -62,7 +62,7 @@ export async function calculateAthanTimes(cachePath: string) {
     // load timings from cache
     const timingData: any = JSON.parse(fs.readFileSync(cachePath, 'utf8'));
     // filter which times I want to display
-    const timingsFilter: string[] = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha']
+    const timingsFilter: string[] = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] // want to remove this later
     const timingsFilterWithSunrise: string[] = ['Sunrise', ...timingsFilter]
 
     // get the timings for today
