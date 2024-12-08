@@ -1,0 +1,43 @@
+# .github/workflows/build.yml 
+name: Build Single Executable
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  
+jobs:
+  build:
+    runs-on: debian-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '23'
+    
+    - name: Install Dependencies
+      run: npm install
+    
+    - name: Build Application
+      run: |
+        rm -f sea-prep.blob
+        npm run esbuild
+        node --experimental-sea-config sea-config.json
+        cp $(command -v node) athan
+        chmod +rwx athan
+        codesign --remove-signature athan
+        npx postject athan NODE_SEA_BLOB sea-prep.blob \
+          --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2 \
+          --macho-segment-name NODE_SEA
+        codesign --sign - athan
+    
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: athan
+        path: athan
+    
