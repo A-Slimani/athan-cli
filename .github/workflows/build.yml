@@ -44,7 +44,7 @@ jobs:
         path: ./typescript/athan 
     
   release:
-    needs: build
+    # needs: build
     if: startsWith(github.ref, 'refs/tags/')  # Only run for tags
     runs-on: ubuntu-latest
     
