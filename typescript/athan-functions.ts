@@ -90,16 +90,21 @@ export async function calculateAthanTimes(cachePath: string) {
           const timeLeft = prayerTime - currentTime;
           const hoursLeft =  Math.floor(timeLeft / 60);
           const minutesLeft = timeLeft % 60;
-          if (hoursLeft === 0 && minutesLeft === 0) {
-            prayerTimeOutput = `Time for ${timing} is now at ${filteredTimings[timing]}`;
-            break;
-          } else if (hoursLeft === 0) {
-            prayerTimeOutput = `Next prayer ${timing} in ${minutesLeft} minutes at ${filteredTimings[timing]}`;
-            break;
-          } else {
-            prayerTimeOutput = `Next prayer ${timing} in ${hoursLeft} hours and ${minutesLeft} minutes at ${filteredTimings[timing]}`;
-            break;
-          } 
+          const startStr = `Next prayer ${timing} in`
+          const endStr = `at ${filteredTimings[timing]}`
+          let hourStr, minuteStr = ''
+          if (hoursLeft > 1) {
+            hourStr = `${hoursLeft} hours`
+          } else if (hoursLeft === 1) {
+            hourStr = `${hoursLeft} hour`
+          }
+          if (minutesLeft > 1) {
+            minuteStr = `${minutesLeft} minutes`
+          } else if (minutesLeft === 1) {
+            minuteStr = `${minutesLeft} minute`
+          }
+          prayerTimeOutput = `${startStr} ${hourStr} ${minuteStr} ${endStr}`
+          break;
         }
       }
     }
@@ -127,7 +132,6 @@ export async function getAllAthanTimes(cachePath: string) {
       }, {});
 
     console.log(table(Object.entries(filteredTimings)))
-    console.table(Object.entries(filteredTimings))
   } catch (error) {
     console.error(error);
     throw error;

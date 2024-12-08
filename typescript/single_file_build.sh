@@ -1,5 +1,6 @@
 #!/bin/bash
-npm run build
+rm sea-prep.blob
+npm run esbuild
 node --experimental-sea-config sea-config.json
 cp $(command -v node) athan
 chmod +rwx athan

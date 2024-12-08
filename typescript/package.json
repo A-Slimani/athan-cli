@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build": "tsup main.ts --format cjs --out-dir dist",
+    "esbuild": "esbuild main.ts --bundle --platform=node --outfile=dist/main.js",
     "start": "node dist/main.js"
   },
   "pkg": {
@@ -14,6 +15,7 @@
     "tsup": "^8.3.5"
   },
   "devDependencies": {
+    "esbuild": "^0.24.0",
     "typescript": "^5.7.2"
   }
 }

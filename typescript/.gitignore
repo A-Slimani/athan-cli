@@ -2,3 +2,4 @@ node_modules
 dist
 sea-prep.blob
 athan
+.DS_Store

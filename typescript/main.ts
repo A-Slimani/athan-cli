@@ -3,6 +3,8 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 
+process.removeAllListeners('warning');
+
 const locationCached: string = path.join(os.tmpdir(), 'location.json');
 const athanCached: string = path.join(os.tmpdir(), 'athan.json');
 
