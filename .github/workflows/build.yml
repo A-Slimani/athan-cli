@@ -18,14 +18,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '23'
-    
-    - name: change directory
-      run: cd typescript
-    
+   
     - name: Install Dependencies
+      working-directory: ./typescript
       run: npm install
     
     - name: Build Application
+      working-directory: ./typescript
       run: |
         rm -f sea-prep.blob
         npm run esbuild
