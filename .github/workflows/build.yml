@@ -44,11 +44,16 @@ jobs:
         path: ./typescript/athan 
     
   release:
-    # needs: build
-    if: startsWith(github.ref, 'refs/tags/')  # Only run for tags
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')   
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
+    - name: Debug
+      run: echo "github.ref = ${{ github.ref }}"
+
     - uses: actions/download-artifact@v4
       with:
         name: athan
