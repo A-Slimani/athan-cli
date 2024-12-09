@@ -90,20 +90,20 @@ export async function calculateAthanTimes(cachePath: string) {
           const timeLeft = prayerTime - currentTime;
           const hoursLeft =  Math.floor(timeLeft / 60);
           const minutesLeft = timeLeft % 60;
-          const startStr = `Next prayer ${timing} in`
+          const startStr = `Next prayer ${timing} in `
           const endStr = `at ${filteredTimings[timing]}`
           let hourStr, minuteStr = ''
           if (hoursLeft > 1) {
-            hourStr = `${hoursLeft} hours`
+            hourStr = `${hoursLeft} hours `
           } else if (hoursLeft === 1) {
-            hourStr = `${hoursLeft} hour`
-          }
+            hourStr = `${hoursLeft} hour `
+          } else { hourStr = '' } 
           if (minutesLeft > 1) {
-            minuteStr = `${minutesLeft} minutes`
+            minuteStr = `${minutesLeft} minutes `
           } else if (minutesLeft === 1) {
-            minuteStr = `${minutesLeft} minute`
-          }
-          prayerTimeOutput = `${startStr} ${hourStr} ${minuteStr} ${endStr}`
+            minuteStr = `${minutesLeft} minute `
+          } else { minuteStr = '' }
+          prayerTimeOutput = `${startStr}${hourStr}${minuteStr}${endStr}`
           break;
         }
       }
