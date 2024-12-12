@@ -3,6 +3,7 @@ A simple terminal application that tells the athan time based of current geoloca
 
 ## Setup
 ### Mac 
+- Download the file in the release section
 - Copy the file into /usr/local/bin
 
 ## Commands
