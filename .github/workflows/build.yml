@@ -41,7 +41,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: athan
-        path: ./typescript/athan
+        path: ./typescript/athan-mac
       
   build-linux:
     runs-on: ubuntu-latest
@@ -74,7 +74,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: athan
-        path: ./typescript/athan
+        path: ./typescript/athan-linux
 
   build-windows:
     runs-on: windows-latest
