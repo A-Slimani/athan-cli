@@ -41,7 +41,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: athan
-        directory: ./mac
+        path: ./mac
       
   build-linux:
     runs-on: ubuntu-latest
@@ -73,7 +73,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: athan
-        directory: ./linux
+        path: ./linux
 
   build-windows:
     runs-on: windows-latest
@@ -104,5 +104,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: athan  
-        directory: ./windows
+        path: ./windows
        
