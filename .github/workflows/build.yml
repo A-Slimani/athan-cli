@@ -29,6 +29,7 @@ jobs:
         rm -f sea-prep.blob
         npm run esbuild
         node --experimental-sea-config sea-config.json
+        mkdir mac
         cp $(command -v node) ./mac/athan
         chmod +rwx athan
         codesign --remove-signature athan
@@ -64,6 +65,7 @@ jobs:
         rm -f sea-prep.blob
         npm run esbuild
         node --experimental-sea-config sea-config.json
+        mkdir linux
         cp $(command -v node) ./linux/athan
         chmod +rwx athan
         npx postject athan NODE_SEA_BLOB sea-prep.blob \
@@ -104,4 +106,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: athan  
+        path: .\
        
